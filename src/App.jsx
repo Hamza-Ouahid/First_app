@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Note from "./components/Note";
 import CreateArea from "./components/CreateArea";
-import API from "./components/API";
+import API from "./components/API.jsx";
 
 function App() {
   const [notes, setNotes] = useState([]);

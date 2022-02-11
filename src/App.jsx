@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
-import CreateArea from "./CreateArea";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Note from "./components/Note";
+import CreateArea from "./components/CreateArea";
+import API from "./components/API";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -48,23 +50,33 @@ function App() {
   }
 
   return (
-    <div>
+    <Router>
       <Header />
-      <CreateArea onAdd={addNote} />
-      {notes.map((noteitem) => {
-        return (
-          <Note
-            key={noteitem.id}
-            id={noteitem.id}
-            title={noteitem.title}
-            content={noteitem.content}
-            onDelete={deleteNote}
-          />
-        );
-      })}
 
+      <Routes>
+        <Route path="/API" element={<API />}></Route>
+        <Route
+          path="/"
+          element={
+            <React.Fragment>
+              <CreateArea onAdd={addNote} />
+              {notes.map((noteitem) => {
+                return (
+                  <Note
+                    key={noteitem.id}
+                    id={noteitem.id}
+                    title={noteitem.title}
+                    content={noteitem.content}
+                    onDelete={deleteNote}
+                  />
+                );
+              })}
+            </React.Fragment>
+          }
+        ></Route>
+      </Routes>
       <Footer />
-    </div>
+    </Router>
   );
 }
 

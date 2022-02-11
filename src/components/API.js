@@ -21,8 +21,10 @@ function API() {
           return (
             <li key={id} className="user">
               <img src={avatar_url} alt={login}></img>
-              <div>{login}</div>
-              <a href={html_url}>Profil</a>
+              <div>
+                <h4>{login}</h4>
+                <a href={html_url}>Profil</a>
+              </div>
             </li>
           );
         })}
